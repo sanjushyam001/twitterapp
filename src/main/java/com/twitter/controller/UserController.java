@@ -25,31 +25,46 @@ public class UserController {
     @GetMapping("/user/{id}")
     public User getUser(@PathVariable("id") Integer id) {
 
-        return userService.findUser(id);
+        return userService.findUserById(id);
     }
 
     @PostMapping("/user/create")
     public User createUser(@RequestBody User user) {
-        return userService.savedUser(user);
+        return userService.registerUser(user);
     }
 
     @PutMapping("/user/update")
     public User updateUser(@RequestBody User user) {
-        User updatedUser = userService.modifyUser(user);
+        User updatedUser = userService.updateUser(user);
         return updatedUser;
     }
 
-    @DeleteMapping("/user/delete/{id}")
-    public String deleteUser(@PathVariable Integer id) {
+    @PutMapping("/user/follows/{userId1}/{userId2}")
+    public User followUserHandler(
+            @PathVariable Integer userId1,
+            @PathVariable Integer userId2){
 
-        Integer status = userService.removeUser(id);
-
-
-        return status != 0 ? "User with this id "+id+" has been deleted successfully!" :
-                "Sorry, given User with this id "+id+" is not available !";
-
-
+        return userService.followUser(userId1,userId2);
     }
+    @GetMapping("/user/search")
+    public List<User> searchUserByQuery(
+           @RequestParam("query") String query
+           ){
+
+        return userService.searchUserByQuery(query);
+    }
+
+//    @DeleteMapping("/user/delete/{id}")
+//    public String deleteUser(@PathVariable Integer id) {
+//
+//        Integer status = userService.removeUser(id);
+//
+//
+//        return status != 0 ? "User with this id "+id+" has been deleted successfully!" :
+//                "Sorry, given User with this id "+id+" is not available !";
+//
+//
+//    }
 
 
 

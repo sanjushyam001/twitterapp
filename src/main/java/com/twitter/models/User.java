@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,5 +20,9 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    private String gender;
+
+    private List<Integer> followers;
+    private List<Integer> followings;
 
 }

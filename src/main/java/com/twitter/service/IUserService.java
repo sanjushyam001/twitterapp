@@ -5,9 +5,11 @@ import com.twitter.models.User;
 import java.util.List;
 
 public interface IUserService {
-    public User savedUser(User user);
+    public User registerUser(User user);
+    public User findUserById(Integer id);
+    public User findUserByEmail(String email);
+    public User followUser(Integer userId1,Integer userId2);
     public List<User> findAllUsers();
-    public User findUser(Integer id);
-    public User modifyUser(User user);
-    public Integer removeUser(Integer id);
+    public User updateUser(User user);
+    public List<User> searchUserByQuery(String query);
 }
